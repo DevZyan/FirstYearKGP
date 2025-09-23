@@ -260,11 +260,26 @@ const semesterData = {
         id: "ai",
         name: "Intoduction to Artificial Intelligence",
         image:
-          "https://github.com/Shubhajeetgithub/photos/blob/main/EC.png?raw=true",
+          "https://github.com/Shubhajeetgithub/photos/blob/main/ai.png?raw=true",
         resources: [
           {
             name: "Syllabus",
-            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/ErO-fKkIXaZGjxydrtzEcs8BFsgm1ki1SoaVXgypca_TJw?e=VLZdwr",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EuMYl6H2IOJJky9Dw2EMCnIBfXI52EhmYVYAS8qp7GGwIQ?e=1tFMOU",
+            icon: FileText,
+          },
+          {
+            name: "Books",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/Eh_R6pqy02NPsT91s554RxsBCyTBvJQNfnha5LE1UGaV4w?e=3O7zE6",
+            icon: BookOpen,
+          },
+          {
+            name: "Papers",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EvC0CmKxVOtChpN8RtXn8y0B8R4r42Zq_R9iSYt68GrMRA?e=yLHofH",
+            icon: Download,
+          },
+          {
+            name: "Fundae :)",
+            url: "#",
             icon: FileText,
           },
         ],
@@ -273,11 +288,31 @@ const semesterData = {
         id: "ml",
         name: "Introduction to Machine Learning",
         image:
-          "https://github.com/Shubhajeetgithub/photos/blob/main/ET.png?raw=true",
+          "https://github.com/Shubhajeetgithub/photos/blob/main/ml.png?raw=true",
         resources: [
           {
             name: "Syllabus",
-            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EunGyN-55G1Ml6AVHifLPGgB8b7wJG809UPDP1BUhjnPSQ?e=pnnouu",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EjDmyXRJp_hHnIIb2WImNecByGAhXPExHk3Y8rOd62Vbig?e=ubPHtT",
+            icon: FileText,
+          },
+          {
+            name: "Books",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EhlPuj9UHXhHpvx6vot3OnEBJKcUxzVSzprIhKcNrJx7oQ?e=PpoHCb",
+            icon: BookOpen,
+          },
+          {
+            name: "Papers",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EjAKob4XOjZEu-jp3fgrN5wB8g9VzTEMP30CsBaRHLm4aA?e=dwnPMW",
+            icon: Download,
+          },
+          {
+            name: "Notes",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/Ei7kJJIBtl5FowNEcNGXTDMBpcUp2TOUnKw6K3j21Qykfw?e=SQRiDd",
+            icon: Download,
+          },
+          {
+            name: "Fundae :)",
+            url: "#",
             icon: FileText,
           },
         ],
@@ -286,11 +321,26 @@ const semesterData = {
         id: "linalgAi",
         name: "Linear Algebra for AI",
         image:
-          "https://github.com/Shubhajeetgithub/photos/blob/main/IntroDS.png?raw=true",
+          "https://github.com/Shubhajeetgithub/photos/blob/main/linalgai.png?raw=true",
         resources: [
           {
             name: "Syllabus",
             url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EiJBmDFxyaxCkA5bK-xVmP4B5DoFiAgH7HHane22SGgFPw?e=cbKo7E",
+            icon: FileText,
+          },
+          {
+            name: "Books",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/ErO-fKkIXaZGjxydrtzEcs8BFsgm1ki1SoaVXgypca_TJw?e=VLZdwr",
+            icon: BookOpen,
+          },
+          {
+            name: "Papers",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/ErO-fKkIXaZGjxydrtzEcs8BFsgm1ki1SoaVXgypca_TJw?e=VLZdwr",
+            icon: Download,
+          },
+          {
+            name: "Fundae :)",
+            url: "#",
             icon: FileText,
           },
         ],
@@ -299,11 +349,26 @@ const semesterData = {
         id: "algo",
         name: "Design and analysis of Algorithms",
         image:
-          "https://github.com/Shubhajeetgithub/photos/blob/main/spl.png?raw=true",
+          "https://github.com/Shubhajeetgithub/photos/blob/main/algo.png?raw=true",
         resources: [
           {
             name: "Syllabus",
-            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/Eh1WzMAfjJtAkV_xoa7frjwBchYlafoaTBZvXqydZsy5nw?e=TwhChh",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EicvL3Qobq5MlBhrJDUxpqkBjgAe2vkQn2TUcMbtb_Z-UQ?e=aZWCNX",
+            icon: FileText,
+          },
+          {
+            name: "Books",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EjrKdtf2JqNPvVZ63MgurkYBFygA9KGRe4-ORrxCfZuglg?e=Gqzv3Q",
+            icon: BookOpen,
+          },
+          {
+            name: "Papers",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/EhsaLfDcwdtFqPLnIaAs2nIBaF7QUz3t1fxoZL2_9uxuyg?e=M08bml",
+            icon: Download,
+          },
+          {
+            name: "Fundae :)",
+            url: "#",
             icon: FileText,
           },
         ],
@@ -312,11 +377,11 @@ const semesterData = {
         id: "prob",
         name: "Probability and Statistics",
         image:
-          "https://github.com/Shubhajeetgithub/photos/blob/main/spl.png?raw=true",
+          "https://github.com/Shubhajeetgithub/photos/blob/main/pns.png?raw=true",
         resources: [
           {
-            name: "Syllabus",
-            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/En0A9mwowmFHn-Gu2KwcqosBQd1B9eQNZ2dBanHDdRGWjg?e=aWSM8L",
+            name: "Tutorials",
+            url: "https://iitkgpacin-my.sharepoint.com/:f:/g/personal/shubhajeetdas24_24_kgpian_iitkgp_ac_in/ErBwm1HtSCRGs-o70EVy_LoBGNGVT1O_gamS1TQqEuLIzg?e=Ox3DhT",
             icon: FileText,
           },
         ],
