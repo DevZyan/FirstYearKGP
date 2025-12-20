@@ -1,4 +1,4 @@
-import { ChevronDown, ChevronRight, BookOpen, FileText, Download } from "lucide-react";
+import { BookOpen, FileText, Download } from "lucide-react";
 
 const semesterData = {
   s1: {
