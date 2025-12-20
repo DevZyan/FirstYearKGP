@@ -1,5 +1,5 @@
 import "./TimeTable.css";
-import { DAYS, DAY_LABELS, FULL_DAY_LABELS, timetableData, SLOT_LABELS } from "../data/timeTableData";
+import { DAYS, DAY_LABELS, FULL_DAY_LABELS, TIMETABLE_DATA, SLOT_LABELS } from "../data/timeTableData";
 
 function buildDaySlotMap(dayData) {
   const map = {};
@@ -11,6 +11,7 @@ function buildDaySlotMap(dayData) {
 }
 
 function TimeTable() {
+  const timetableData = TIMETABLE_DATA;
   return (
     <div className="container">
       <div className="timetable-header">
