@@ -1,8 +1,47 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { Outlet, NavLink } from "react-router-dom";
-import BackgroundFX from "./components/BackGroundFX";
+
+const SunIcon = () => (
+  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <circle cx="12" cy="12" r="5"/>
+    <line x1="12" y1="1" x2="12" y2="3"/>
+    <line x1="12" y1="21" x2="12" y2="23"/>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+    <line x1="1" y1="12" x2="3" y2="12"/>
+    <line x1="21" y1="12" x2="23" y2="12"/>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+  </svg>
+);
+
+const MoonIcon = () => (
+  <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+  </svg>
+);
 
 const App = () => {
+  const [theme, setTheme] = useState(() => {
+    try {
+      const stored = window.localStorage.getItem("theme");
+      if (stored === "dark" || stored === "light") return stored;
+      return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
+    } catch {
+      return "dark";
+    }
+  });
+
+  const isDark = theme === "dark";
+
+  useEffect(() => {
+    document.documentElement.classList.toggle("dark", isDark);
+    document.documentElement.setAttribute("data-theme", theme);
+    window.localStorage.setItem("theme", theme);
+  }, [isDark, theme]);
+
+  const toggleTheme = () => setTheme((prev) => (prev === "dark" ? "light" : "dark"));
+
   const navItems = [
     { id: 1, name: "Home", route: "/" },
     { id: 2, name: "TimeTable", route: "/TimeTable" },
@@ -11,51 +50,49 @@ const App = () => {
   ];
 
   return (
-    <BackgroundFX>
-      <div className="min-h-screen bg-gradient-to-br from-gray-900 via-black to-gray-900 text-white flex flex-col items-center">
-        {/* Background Pattern */}
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_80%,_rgba(120,119,198,0.1),_transparent_50%)] pointer-events-none"></div>
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_80%_20%,_rgba(255,255,255,0.05),_transparent_50%)] pointer-events-none"></div>
+    <div className="app-root">
+      <div className="noise-overlay" />
 
-        {/* Header */}
-        <header className="text-center mt-12 relative z-10">
-          <h1 className="text-6xl font-bold mb-2 bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent animate-pulse">
-            AI 2024
+      <header className="site-header">
+        <div className="header-inner">
+          <div className="header-eyebrow">IIT Kharagpur · AIML</div>
+          <h1 className="header-title">
+            <span className="title-main">AI</span>
+            <span className="title-year">2024</span>
           </h1>
-          <h2 className="text-xl text-gray-300 font-light tracking-wide">
-            Department of Artificial Intelligence
-          </h2>
-          <div className="w-32 h-1 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mt-4 rounded-full"></div>
-        </header>
+          <p className="header-subtitle">Department of Artificial Intelligence</p>
+          <div className="header-rule" />
+        </div>
 
-        {/* Navigation */}
-        <nav className="flex gap-6 mt-12 relative z-10 flex-wrap justify-evenly">
-          {navItems.map((item) => (
-            <NavLink
-              to={item.route}
-              key={item.id}
-              className={({ isActive }) =>
-                `px-6 py-3 rounded-lg border transition-all duration-300 transform hover:scale-105 backdrop-blur-sm ${
-                  isActive
-                    ? "bg-gradient-to-r from-blue-600 to-purple-600 border-blue-500 shadow-lg shadow-blue-500/25"
-                    : "bg-gray-800/50 border-gray-600 hover:bg-gray-700/50 hover:border-gray-500"
-                }`
-              }
-            >
-              {item.name}
-            </NavLink>
-          ))}
-        </nav>
+        <button
+          type="button"
+          onClick={toggleTheme}
+          className="theme-toggle"
+          aria-label="Toggle light/dark theme"
+        >
+          <span className="toggle-icon">{isDark ? <SunIcon /> : <MoonIcon />}</span>
+          <span className="toggle-label">{isDark ? "Light" : "Dark"}</span>
+        </button>
+      </header>
 
-        {/* Page Content */}
+      <nav className="site-nav">
+        {navItems.map((item) => (
+          <NavLink
+            to={item.route}
+            key={item.id}
+            className={({ isActive }) => `nav-link${isActive ? " nav-link--active" : ""}`}
+          >
+            {item.name}
+          </NavLink>
+        ))}
+      </nav>
+
+      <div className="nav-divider" />
+
+      <main className="site-main">
         <Outlet />
-
-        {/* Floating Elements */}
-        <div className="absolute top-20 left-10 w-2 h-2 bg-blue-500 rounded-full animate-ping"></div>
-        <div className="absolute top-40 right-20 w-1 h-1 bg-purple-500 rounded-full animate-pulse"></div>
-        <div className="absolute bottom-40 left-20 w-1.5 h-1.5 bg-pink-500 rounded-full animate-bounce"></div>
-      </div>
-    </BackgroundFX>
+      </main>
+    </div>
   );
 };
 
