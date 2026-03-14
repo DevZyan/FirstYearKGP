@@ -1,189 +1,150 @@
-/* ─── TimeTable ─────────────────────────────────────────────── */
-.tt-wrap {
-  width: 100%;
-  margin-top: 0;
-}
+/* TimeTable.css — all timetable styles, scoped to .tt-* */
+
+/* ─── Wrapper ────────────────────────────────────────────────── */
+.tt-wrap { width: 100%; }
 
 .tt-eyebrow-row {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  margin-bottom: 20px;
-  padding-bottom: 12px;
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: 20px; padding-bottom: 12px;
   border-bottom: 1px solid var(--border);
+  flex-wrap: wrap; gap: 10px;
 }
 
+.tt-eyebrow-left { display: flex; align-items: baseline; gap: 14px; flex-wrap: wrap; }
+
 .tt-eyebrow {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  color: var(--text-muted);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.18em; text-transform: uppercase; color: var(--text-muted);
 }
 
 .tt-eyebrow-meta {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
+  font-family: var(--font-mono); font-size: 11px; color: var(--text-muted); letter-spacing: 0.05em;
 }
 
-/* Desktop table */
-.tt-desktop {
-  display: block;
+/* Copy Today button */
+.tt-copy-btn {
+  display: flex; align-items: center; gap: 7px;
+  padding: 7px 12px;
+  background: transparent; border: 1px solid var(--border); border-radius: var(--radius);
+  color: var(--text-muted); font-family: var(--font-mono); font-size: 10px;
+  letter-spacing: 0.1em; text-transform: uppercase; cursor: pointer;
+  transition: all var(--transition);
 }
+.tt-copy-btn:hover { background: var(--bg-hover); border-color: var(--border-strong); color: var(--text-primary); }
 
-.tt-scroll {
-  width: 100%;
-  overflow-x: auto;
-}
+/* ─── Desktop ────────────────────────────────────────────────── */
+.tt-desktop { display: block; }
 
+.tt-scroll { width: 100%; overflow-x: auto; }
 .tt-scroll::-webkit-scrollbar { height: 4px; }
 .tt-scroll::-webkit-scrollbar-track { background: var(--bg); }
 .tt-scroll::-webkit-scrollbar-thumb { background: var(--border-strong); border-radius: 2px; }
 
-.tt-table {
-  width: 100%;
-  min-width: 860px;
-  border-collapse: collapse;
-  font-family: 'DM Sans', sans-serif;
-}
+.tt-table { width: 100%; min-width: 860px; border-collapse: collapse; }
 
 .tt-th {
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-muted);
-  padding: 10px 12px;
-  text-align: center;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
-  white-space: nowrap;
-  position: sticky;
-  top: 0;
-  z-index: 10;
+  font-family: var(--font-mono); font-size: 10px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-muted);
+  padding: 10px 12px; text-align: center;
+  background: var(--bg-secondary); border: 1px solid var(--border);
+  white-space: nowrap; position: sticky; top: 0; z-index: 10;
+  transition: background var(--transition), color var(--transition);
 }
-
-.tt-th--day {
-  min-width: 80px;
-  position: sticky;
-  left: 0;
-  z-index: 15;
-  text-align: left;
-  padding-left: 16px;
-}
+.tt-th--day { min-width: 72px; position: sticky; left: 0; z-index: 15; text-align: left; padding-left: 16px; }
+.tt-th--current { background: var(--accent) !important; color: var(--accent-inv) !important; }
 
 .tt-td {
-  padding: 12px 10px;
-  text-align: center;
-  border: 1px solid var(--border);
-  vertical-align: middle;
-  min-width: 110px;
+  padding: 11px 10px; text-align: center; border: 1px solid var(--border);
+  vertical-align: middle; min-width: 110px;
   transition: background var(--transition);
 }
-
 .tt-td--day {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  text-align: left;
-  padding-left: 16px;
-  position: sticky;
-  left: 0;
-  z-index: 5;
-  background: var(--bg-secondary);
+  font-family: var(--font-mono); font-size: 11px; font-weight: 500;
+  letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-secondary);
+  text-align: left; padding-left: 16px;
+  position: sticky; left: 0; z-index: 5;
+  background: var(--bg-secondary) !important;
   white-space: nowrap;
 }
+.tt-td--today-label { color: var(--text-primary); }
 
 .tt-tr--even .tt-td { background: var(--bg); }
-.tt-tr--odd .tt-td { background: var(--bg-secondary); }
-.tt-tr--even .tt-td--day,
-.tt-tr--odd .tt-td--day { background: var(--bg-secondary); }
+.tt-tr--odd  .tt-td { background: var(--bg-secondary); }
+.tt-tr--today .tt-td { background: color-mix(in srgb, var(--accent) 4%, var(--bg)); }
+.tt-tr--today .tt-td--day { background: color-mix(in srgb, var(--accent) 8%, var(--bg-secondary)) !important; }
+.tt-td--filled:hover { background: var(--bg-hover) !important; cursor: default; }
+.tt-td--current { background: color-mix(in srgb, var(--accent) 10%, var(--bg)) !important; outline: 1px solid var(--border-strong); }
 
-.tt-td--filled:hover { background: var(--bg-hover) !important; }
-
-.tt-subject {
-  display: block;
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--text-primary);
-  line-height: 1.3;
+.tt-today-dot {
+  display: inline-block; width: 5px; height: 5px; border-radius: 50%;
+  background: var(--text-primary); margin-left: 6px; vertical-align: middle;
 }
 
-.tt-room {
-  display: block;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--text-muted);
-  margin-top: 3px;
-  letter-spacing: 0.05em;
+.tt-subject { display: block; font-size: 13px; font-weight: 500; color: var(--text-primary); line-height: 1.3; }
+.tt-room    { display: block; font-family: var(--font-mono); font-size: 10px; color: var(--text-muted); margin-top: 3px; letter-spacing: 0.05em; }
+.tt-free    { font-family: var(--font-mono); font-size: 12px; color: var(--border-strong); }
+
+/* ─── Mobile ─────────────────────────────────────────────────── */
+.tt-mobile { display: none; }
+
+/* Day filter pills */
+.tt-day-pills {
+  display: flex; gap: 6px; margin-bottom: 16px; flex-wrap: wrap;
 }
 
-.tt-free {
-  font-family: 'DM Mono', monospace;
-  font-size: 12px;
-  color: var(--border-strong);
+.tt-pill {
+  display: inline-flex; align-items: center; gap: 5px;
+  padding: 6px 12px;
+  border: 1px solid var(--border); border-radius: 20px;
+  background: transparent; color: var(--text-muted);
+  font-family: var(--font-mono); font-size: 10px; letter-spacing: 0.1em;
+  text-transform: uppercase; cursor: pointer;
+  transition: all var(--transition);
 }
+.tt-pill:hover { background: var(--bg-hover); color: var(--text-primary); border-color: var(--border-strong); }
+.tt-pill--active { background: var(--accent); color: var(--accent-inv); border-color: var(--accent); }
+.tt-pill--today { border-color: var(--border-strong); }
+.tt-pill-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; opacity: 0.6; }
 
-/* Mobile cards */
-.tt-mobile {
-  display: none;
-}
-
-.tt-day-card {
-  border: 1px solid var(--border);
-  border-radius: 4px;
-  overflow: hidden;
-  margin-bottom: 12px;
-}
+/* Day cards */
+.tt-day-card { border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; margin-bottom: 10px; }
+.tt-day-card--today { border-color: var(--border-strong); }
 
 .tt-day-header {
-  background: var(--bg-secondary);
-  border-bottom: 1px solid var(--border);
-  padding: 12px 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 11px 16px;
+  background: var(--bg-secondary); border-bottom: 1px solid var(--border);
 }
 
-.tt-day-label {
-  font-family: 'DM Mono', monospace;
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-}
+.tt-day-label { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--text-secondary); }
+.tt-today-badge { font-family: var(--font-mono); font-size: 9px; letter-spacing: 0.12em; text-transform: uppercase; padding: 2px 7px; background: var(--accent); color: var(--accent-inv); border-radius: 2px; }
 
-.tt-slots { padding: 8px 0; }
+.tt-slots { padding: 4px 0; }
 
 .tt-slot {
-  display: flex;
-  align-items: flex-start;
-  padding: 10px 16px;
-  border-bottom: 1px solid var(--border);
-  gap: 16px;
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 10px 16px; border-bottom: 1px solid var(--border);
 }
-
 .tt-slot:last-child { border-bottom: none; }
-.tt-slot--empty { opacity: 0.45; }
+.tt-slot--empty { opacity: 0.4; }
+.tt-slot--current { background: color-mix(in srgb, var(--accent) 7%, var(--bg)); }
 
 .tt-slot-time {
-  flex: 0 0 100px;
-  font-family: 'DM Mono', monospace;
-  font-size: 10px;
-  color: var(--text-muted);
-  letter-spacing: 0.05em;
-  padding-top: 2px;
-  white-space: nowrap;
+  flex: 0 0 auto; min-width: 90px;
+  font-family: var(--font-mono); font-size: 10px; color: var(--text-muted);
+  letter-spacing: 0.04em; padding-top: 2px; white-space: nowrap;
+  display: flex; flex-direction: column; gap: 3px;
+}
+
+.tt-now-indicator {
+  font-family: var(--font-mono); font-size: 8px; letter-spacing: 0.15em;
+  background: var(--text-primary); color: var(--bg);
+  padding: 1px 5px; border-radius: 2px; width: fit-content;
 }
 
 .tt-slot-info { flex: 1; }
 
 @media (max-width: 768px) {
   .tt-desktop { display: none; }
-  .tt-mobile { display: block; }
+  .tt-mobile  { display: block; }
 }
