@@ -1,28 +1,56 @@
 import React from 'react'
 
+const people = [
+  {
+    name: 'Shubhajeet Das',
+    email: '(firstname)(lastname)(24.24)@kgpian.iitkgp.ac.in',
+    image: 'https://github.com/Shubhajeetgithub/photos/blob/main/shubhajeet.jpeg?raw=true',
+    role: 'Developer'
+  },
+  {
+    name: 'Durva Daga',
+    email: '(firstname)(lastname)(.24)@kgpian.iitkgp.ac.in',
+    image: 'https://github.com/Shubhajeetgithub/photos/blob/main/durva.jpeg?raw=true',
+    role: 'Developer'
+  },
+  {
+    name: 'Kingshuk Patra',
+    email: '(firstname)(lastname)(2006.24)@kgpian.iitkgp.ac.in',
+    image: 'https://github.com/Shubhajeetgithub/photos/blob/main/kingshuk.jpeg?raw=true',
+    role: 'Developer'
+  }
+];
+
 function Credits() {
   return (
-    <div className="mt-16 mb-12 text-center relative z-10">
-        <h3 className="text-2xl font-semibold mb-8 text-gray-300">Credits</h3>
-        <div className="flex justify-center gap-16 flex-wrap">
-          {[
-            { name: 'Shubhajeet Das', email: '(firstname)(lastname)(24.24)(at)(kgpian.iitkgp.ac.in)', image: 'https://github.com/Shubhajeetgithub/photos/blob/main/shubhajeet.jpeg?raw=true' },
-            { name: 'Durva Daga', email: '(firstname)(lastname)(.24)(at)(kgpian.iitkgp.ac.in)', image: 'https://github.com/Shubhajeetgithub/photos/blob/main/durva.jpeg?raw=true' },
-            { name: 'Kingshuk Patra', email: '(firstname)(lastname)(2006.24)(at)(kgpian.iitkgp.ac.in)', image: 'https://github.com/Shubhajeetgithub/photos/blob/main/kingshuk.jpeg?raw=true' }
-          ].map((person, index) => (
-            <div key={index} className="text-center group">
-              <div className="relative mb-4">
-                <div className='flex justify-center'>
-                  <img className="w-[150px] h-[150px] rounded-full object-cover border-[3px] border-[#4B0082]" src={person.image} />
-                </div>
-              </div>
-              <div className="text-white font-medium">{person.name}</div>
-              <div className="text-gray-400 text-sm mt-1">{person.email}</div>
+    <section className="credits-section">
+      <div className="credits-header">
+        <span className="text-eyebrow">Credits</span>
+        <div className="credits-rule" />
+      </div>
+
+      <div className="credits-grid">
+        {people.map((person, i) => (
+          <div key={i} className="credit-card">
+            <div className="credit-img-wrap">
+              <img
+                src={person.image}
+                alt={person.name}
+                className="credit-img"
+                onError={e => { e.target.style.display = 'none'; }}
+              />
             </div>
-          ))}
-        </div>
-    </div>
-  )
+            <div className="credit-info">
+              <div className="credit-index">0{i + 1}</div>
+              <div className="credit-name">{person.name}</div>
+              <div className="credit-role">{person.role}</div>
+              <div className="credit-email">{person.email}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
 }
 
-export default Credits
+export default Credits;

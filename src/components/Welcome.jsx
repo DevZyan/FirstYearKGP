@@ -1,58 +1,83 @@
 import React, { useState, useEffect } from 'react'
 
 function Welcome() {
-  const [terminalText, setTerminalText] = useState('');
+  const [phase, setPhase] = useState(0);
+  const [cmdText, setCmdText] = useState('');
   const [showCursor, setShowCursor] = useState(true);
+  const [showOutput, setShowOutput] = useState(false);
 
-  // Terminal typing effect
+  const command = '$ cat welcome.txt';
+
   useEffect(() => {
-    const text = '$ cat welcome.txt';
-    let index = 0;
-    const typeInterval = setInterval(() => {
-      if (index < text.length) {
-        setTerminalText(text.slice(0, index + 1));
-        index++;
+    let i = 0;
+    const typeTimer = setInterval(() => {
+      if (i < command.length) {
+        setCmdText(command.slice(0, i + 1));
+        i++;
       } else {
-        clearInterval(typeInterval);
+        clearInterval(typeTimer);
+        setTimeout(() => setShowOutput(true), 300);
       }
-    }, 100);
+    }, 70);
 
-    // Cursor blinking effect
-    const cursorInterval = setInterval(() => {
-      setShowCursor(prev => !prev);
-    }, 500);
+    const cursorTimer = setInterval(() => setShowCursor(p => !p), 530);
 
-    return () => {
-      clearInterval(typeInterval);
-      clearInterval(cursorInterval);
-    };
+    return () => { clearInterval(typeTimer); clearInterval(cursorTimer); };
   }, []);
 
   return (
-    <div className='w-screen flex items-center justify-center'>
-      <div
-      className="mt-12 w-full max-w-2xl px-4 relative z-10">
-        <div className="bg-gray-900/80 backdrop-blur-sm border border-gray-700 rounded-lg overflow-hidden shadow-2xl">
+    <div className="welcome-wrap">
+      <div className="terminal">
+        {/* Title bar */}
+        <div className="terminal-bar">
+          <div className="terminal-dots">
+            <span className="dot dot--close" />
+            <span className="dot dot--min" />
+            <span className="dot dot--max" />
+          </div>
+          <span className="terminal-title">welcome.txt — bash</span>
+          <span />
+        </div>
 
-            <div className="bg-gray-800 px-4 py-3 flex items-center gap-2 border-b border-gray-700">
-              <div className="w-3 h-3 bg-red-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-yellow-500 rounded-full"></div>
-              <div className="w-3 h-3 bg-green-500 rounded-full"></div>
-              <span className="ml-4 text-sm text-gray-400">terminal</span>
+        {/* Body */}
+        <div className="terminal-body">
+          {/* Command line */}
+          <div className="terminal-line">
+            <span className="terminal-prompt">~</span>
+            <span className="terminal-cmd">{cmdText}</span>
+            <span className={`terminal-cursor ${showCursor ? 'visible' : ''}`}>▌</span>
+          </div>
+
+          {/* Output */}
+          {showOutput && (
+            <div className="terminal-output">
+              <div className="terminal-output-line terminal-output-line--dim">
+                ──────────────────────────────────────────────
+              </div>
+              <div className="terminal-output-line terminal-output-line--body">
+                This platform hosts academic resources from the 2024 AI batch,
+                supplementing existing sites like{' '}
+                <span className="terminal-highlight">CSE 2020</span>,{' '}
+                <span className="terminal-highlight">KGPellence</span>, and{' '}
+                <span className="terminal-highlight">MetaKGP</span>.
+                Our focus is on content not readily available elsewhere.
+              </div>
+              <div className="terminal-output-line terminal-output-line--body" style={{ marginTop: '12px' }}>
+                This site is a work in progress. Report errors or missing content
+                by emailing us — details in the credits below.
+              </div>
+              <div className="terminal-output-line terminal-output-line--dim" style={{ marginTop: '16px' }}>
+                ──────────────────────────────────────────────
+              </div>
+              <div className="terminal-output-line terminal-output-line--status">
+                <span className="terminal-badge">STATUS</span> Active · First Year 2024–25
+              </div>
             </div>
-            
-            <div className="p-6 font-mono text-green-400">
-              {terminalText}
-              <span className={`${showCursor ? 'opacity-100' : 'opacity-0'} transition-opacity`}>
-                _
-              </span>
-            </div>
-            <div className='ml-6 mr-6 mb-2 font-mono text-white'>This website provides academic resources from the 2024 AI batch, aimed at assisting KGPians in their studies. It serves as a supplementary platform alongside existing sites such as <span className='text-yellow-500 font-bold'>CSE 2020</span>, <span className='text-pink-600 font-bold'>KGPellence</span>, and <span className='text-orange-500 font-bold'>MetaKGP</span>. Our focus is on hosting resources that are not readily available elsewhere.
-  As this website is still a work in progress, we welcome your feedback. If you come across any errors or missing content, please feel free to contact us via email (details provided below).</div>
+          )}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-export default Welcome
+export default Welcome;

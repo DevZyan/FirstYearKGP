@@ -5,16 +5,25 @@ function Announcements() {
   const [loading, setLoading] = useState(true);
 
   return (
-    <div className="flex justify-center items-center min-h-screen">
-      {loading && <Loader text="Loading Announcements..." />}
+    <div className="page-section">
+      <div className="page-eyebrow-row">
+        <span className="text-eyebrow">Announcements</span>
+      </div>
 
-      <img
-        src="https://github.com/Shubhajeetgithub/photos/blob/main/nalanda.jpeg?raw=true"
-        alt="Nalanda"
-        onLoad={() => setLoading(false)}
-        onError={() => setLoading(false)}
-        className={`${loading ? "hidden" : "block"} max-w-full h-auto rounded-lg shadow-lg`}
-      />
+      <div className="announcements-wrap">
+        {loading && (
+          <div className="announcements-loader">
+            <Loader text="Fetching announcements..." />
+          </div>
+        )}
+        <img
+          src="https://github.com/Shubhajeetgithub/photos/blob/main/nalanda.jpeg?raw=true"
+          alt="Nalanda announcements board"
+          onLoad={() => setLoading(false)}
+          onError={() => setLoading(false)}
+          className={`announcements-img ${loading ? 'hidden' : ''}`}
+        />
+      </div>
     </div>
   );
 }
